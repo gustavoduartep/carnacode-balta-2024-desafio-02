@@ -5,7 +5,7 @@
       "url": "IMC.styles.css"
     },
     {
-      "hash": "sha256-I4LggERZ\/f+YpdIbmQq\/DkpppLSwVDlVHxq6Yvx\/QAc=",
+      "hash": "sha256-k8NfwuwCCeOoFCP+4FuP9FeUzGyohHbIWvOxkXEPg\/w=",
       "url": "_framework\/blazor.webassembly.js"
     },
     {
@@ -37,7 +37,7 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-Rrhue758keKCzV5hmk66ziS2PJ5OgYKbvG8IW1d3DhM=",
+      "hash": "sha256-uQGup3718YEhJWF5g4XkfDnEmglFyWyEGQ9StZujIdo=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -49,19 +49,19 @@
       "url": "_framework\/Blazored.Toast.wasm"
     },
     {
-      "hash": "sha256-Wo8X4IFj5GD05y\/JwvU8agj8J8QeOrk3yEtvcq7FeuQ=",
+      "hash": "sha256-oB1h1gowj0p+tNd+GtLJ9nd8xlfZJzgYN+VEhMH0Cf0=",
       "url": "_framework\/IMC.wasm"
     },
     {
-      "hash": "sha256-+DiByzdlaB6fNY3kqcK7l+P1VcBf9lwsAuIwFB4wypY=",
+      "hash": "sha256-iIrbZlReQ4o9upD+EHZ80ShDjrNjuHb7RJ1A15RPN3g=",
       "url": "_framework\/Microsoft.AspNetCore.Components.wasm"
     },
     {
-      "hash": "sha256-mmo6S4AxiBcnKbs4b+7ObftqPCkIcLGiAv9gICT\/5NY=",
+      "hash": "sha256-7KkqwwQtcN+NHevIKYhJ2gLZJa3f0aShCl2ldtegyXw=",
       "url": "_framework\/Microsoft.AspNetCore.Components.Web.wasm"
     },
     {
-      "hash": "sha256-XZD3tHlm7Gqn+AKf2i0RaiP+KuSV62HRKkIryz2t7mo=",
+      "hash": "sha256-vOYUxJenhpqw4oK5b61FP\/mlyRZu3zgVemvtISW29fs=",
       "url": "_framework\/Microsoft.AspNetCore.Components.WebAssembly.wasm"
     },
     {
@@ -97,7 +97,7 @@
       "url": "_framework\/Microsoft.Extensions.Logging.wasm"
     },
     {
-      "hash": "sha256-oE3WFEwFhseBY+RkBCY09skiLtwTtiD6HaeOSuygifo=",
+      "hash": "sha256-gE1BXyLWVUnQwUrxnkNGo22RSc\/PIEaAypz1VWboWP4=",
       "url": "_framework\/Microsoft.Extensions.Options.wasm"
     },
     {
@@ -105,11 +105,11 @@
       "url": "_framework\/Microsoft.Extensions.Primitives.wasm"
     },
     {
-      "hash": "sha256-ubsnSsonLEyXvNMviypw0Uswk+xkSFBdhcSHB0Fgb3M=",
+      "hash": "sha256-v\/cVJ0qzEDqUVirFriqW2RB7I0kYt7Qr\/KY9cthnLFQ=",
       "url": "_framework\/Microsoft.JSInterop.wasm"
     },
     {
-      "hash": "sha256-aCgxiIU+arbpOkgLngl1hBQLocrFL2\/t1zUJV8HXOzI=",
+      "hash": "sha256-2qBJkLnOCr4py2S0peps0cFo0z3Ew9OVwGYodtvAVkk=",
       "url": "_framework\/Microsoft.JSInterop.WebAssembly.wasm"
     },
     {
@@ -333,5 +333,5 @@
       "url": "_content\/Blazored.Toast\/Blazored.Toast.bundle.scp.css"
     }
   ],
-  "version": "MKLvLJx5"
+  "version": "TV92kWDT"
 };
