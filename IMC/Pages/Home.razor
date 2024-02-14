@@ -1,0 +1,79 @@
+﻿@page "/"
+@inject ILocalStorageService localStorage
+
+@code{
+    private ResultadoIMC resultadoImc = new ResultadoIMC();
+
+    public class  ResultadoIMC
+    {
+        public string Data { get; set; } = DateTime.Now.ToString("dd/MM/yyyy");
+        public string? Resultado { get; set; }
+        public string? Feedback { get; set; }
+    }
+
+    private double Peso { get; set; }
+    private double Altura { get; set; }
+    private string? Sexo { get; set; }
+    private double IMC { get; set; }
+    private string? Resultado { get; set; }
+    private string? Feedback { get; set; }
+
+    public async Task SalvarCalculo()
+    {
+
+        string json = System.Text.Json.JsonSerializer.Serialize(resultadoImc);
+        string key = "data_" + DateTime.Now.Ticks;
+
+        await localStorage.SetItemAsync(key, json);
+    }
+
+    public async Task VerificarIndice()
+    {
+
+        IMC = Peso / (Altura * Altura);
+
+        if (IMC < 18.5)
+        {
+            resultadoImc.Resultado = "Abaixo do peso ⛔️";
+            resultadoImc.Feedback = "Você está abaixo do peso! Faça alguns ajustes para ficar no peso ideal!";
+        }
+        else if (IMC < 25)
+        {
+            resultadoImc.Resultado = "Peso ideal ✅";
+            resultadoImc.Feedback = "Parabéns, você está no seu peso ideal, continue mantendo este estilo!";
+        }
+        else if (IMC < 30)
+        {
+            resultadoImc.Resultado = "Sobrepeso ⛔️";
+            resultadoImc.Feedback = "Estamos quase lá! Faça alguns ajustes para ficar no peso ideal!";
+        }
+        else if (IMC < 40)
+        {
+            resultadoImc.Resultado = "Obesidade ⛔️";
+            resultadoImc.Feedback = "Você está com obesidade. Você precisa melhorar sua alimentação e rotina de exercícios!";
+        }
+        else
+        {
+            resultadoImc.Resultado = "Obesidade Grave ⛔️";
+            resultadoImc.Feedback = "Você está com obesidade grave. Você precisa melhorar sua alimentação e rotina de exercícios!";
+        }
+
+        await SalvarCalculo();
+    }
+}
+
+<PageTitle>Cálculo do IMC</PageTitle>
+
+<div class="container">
+    <h1>Cálculo de IMC</h1>
+    <div class="flex flex-column">
+        <div><input class="input-text" name="Altura" type="number" placeholder="Altura" @bind="Altura" /></div>
+        <div><input class="input-text" name="Peso" type="number" placeholder="Peso" @bind="Peso" /></div>
+        <div class="mt-15 mb-10 container-checkbox">
+            <input type="checkbox" id="terms" class="input-radio" />
+            <label for="terms">Eu tenho 65 anos ou mais</label>
+        </div>
+        <div><button class="btn btn-primary" @onclick="VerificarIndice">Calcular meu IMC</button></div>
+        <div><button class="btn btn-secondary" href="https://vidasaudavel.einstein.br/calcular-o-seu-imc/">Entenda o cálculo</button></div>
+    </div>
+</div>

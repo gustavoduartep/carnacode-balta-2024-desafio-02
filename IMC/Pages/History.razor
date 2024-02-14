@@ -1,0 +1,86 @@
+﻿@page "/historico"
+@inject ILocalStorageService localStorage
+
+
+@code {
+
+    private ResultadoIMC resultadoImc = new ResultadoIMC();
+
+    public class ResultadoIMC
+    {
+        public string Data { get; set; } = DateTime.Now.ToString("dd/MM/yyyy");
+        public string? Resultado { get; set; }
+        public string? Feedback { get; set; }
+    }
+
+    List<ResultadoIMC> listaResultados = new List<ResultadoIMC>();
+
+    public async Task RecuperaLocalStorage()
+    {
+        var dados = await localStorage.KeysAsync();
+
+        dados = dados.OrderByDescending(d => d).ToList();
+
+        foreach(var dado in dados)
+        {
+            string? json = await localStorage.GetItemAsync<String>(dado);
+
+            if(json != null) {
+
+                ResultadoIMC? resultado = System.Text.Json.JsonSerializer.Deserialize<ResultadoIMC>(json);
+
+                if(resultado != null) {
+                    listaResultados.Add(resultado);
+                }
+            }
+        }
+
+
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        await Initial();
+    }
+
+    private async Task Initial()
+    {
+        await RecuperaLocalStorage();
+    }
+
+
+}
+
+<PageTitle>Histórioco de cálculos</PageTitle>
+
+<div class="container">
+    <div class="flex">
+        <div class="image-container">
+            <a href="index.html"> <img src="/images/icon-no-bg.png" alt="Calculadora de IMC (Índice de massa corporal)"></a>
+        </div>
+    </div>
+    <h1>Histórico</h1>
+    <div class="flex flex-column">
+        <div><input class="input-text" type="text" placeholder="Pesquisar..." /></div>
+
+        <div class="container-history">
+            @foreach (var historico in listaResultados)
+            {
+                <div class="item-history">
+                    <div class="thumbnail"></div>
+                    <div class="content">
+                        <div class="header">
+                            <h2>@historico.Resultado</h2>
+                            <span>@historico.Data</span>
+                        </div>
+
+                        <p>@historico.Feedback</p>
+                    </div>
+                </div>
+                <hr class="divider">
+            }
+        </div>
+    </div>
+</div>
