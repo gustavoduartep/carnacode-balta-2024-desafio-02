@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject ILocalStorageService localStorage
+@inject IToastService toastService
 
 @code{
     private ResultadoIMC resultadoImc = new ResultadoIMC();
@@ -11,8 +12,12 @@
         public string? Feedback { get; set; }
     }
 
-    private double Peso { get; set; }
-    private double Altura { get; set; }
+    private string? Peso { get; set; }
+    private string? Altura { get; set; }
+
+    private double PesoDouble => string.IsNullOrEmpty(Peso) ? 0.0 : double.Parse(Peso);
+    private double AlturaDouble => string.IsNullOrEmpty(Altura) ? 0.0 : double.Parse(Altura);
+
     private string? Sexo { get; set; }
     private double IMC { get; set; }
     private string? Resultado { get; set; }
@@ -24,13 +29,30 @@
         string json = System.Text.Json.JsonSerializer.Serialize(resultadoImc);
         string key = "data_" + DateTime.Now.Ticks;
 
+        toastService.ShowSuccess("O calculo foi realizo, veja o histórico.");
+
         await localStorage.SetItemAsync(key, json);
+    }
+
+    public bool ValidacaoDados()
+    {
+
+        if(string.IsNullOrEmpty(Peso) || string.IsNullOrEmpty(Altura))
+        {
+            toastService.ShowError("Preencha altura e peso para calcular o IMC.");
+            return false;
+        }
+
+        return true;
+
     }
 
     public async Task VerificarIndice()
     {
 
-        IMC = Peso / (Altura * Altura);
+        if(ValidacaoDados()) {
+
+        IMC = PesoDouble / (AlturaDouble * AlturaDouble);
 
         if (IMC < 18.5)
         {
@@ -59,10 +81,13 @@
         }
 
         await SalvarCalculo();
+        }
     }
 }
 
 <PageTitle>Cálculo do IMC</PageTitle>
+
+<BlazoredToasts></BlazoredToasts>
 
 <div class="container">
     <h1>Cálculo de IMC</h1>
